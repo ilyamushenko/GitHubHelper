@@ -3,7 +3,10 @@
   <div class="container-fluid">
     <div class="navbar-wrapper">
       <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="isAuth() == true" ngbDropdown>
+        <li class="nav-item">
+          <a class="nav-link" href=""><h5>GitHubHelper</h5></a>
+        </li>
+        <li class="nav-item text-right" *ngIf="isAuth() == true" ngbDropdown>
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
             <i class="now-ui-icons users_single-02"></i>
             <p>
@@ -11,7 +14,7 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a class="dropdown-item" href="#">Войти</a>
+            <a class="dropdown-item" href="authorization">Войти</a>
           </div>
         </li>
         <li class="nav-item" *ngIf="isAuth() == false" ngbDropdown>
@@ -22,7 +25,7 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic2">
-            <a class="dropdown-item" href="#">Моя страница</a>
+            <a class="dropdown-item" href="user">Моя страница</a>
             <a class="dropdown-item" (click)="exit()">Выйти</a>
           </div>
         </li>

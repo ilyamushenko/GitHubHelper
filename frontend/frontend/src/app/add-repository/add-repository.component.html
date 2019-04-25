@@ -1,0 +1,40 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content" style="text-align: center;">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Подписаться на репозиторий</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row justify-content-center align-items-center">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label for="link">Введите ссылку на репозиторий</label>
+                  <input name="link" id="link" type="text" [(ngModel)]="link" class="form-control" placeholder="https://github.com/Username/Repository">
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center align-items-center" *ngIf="error">
+              <div class="col-md-10">
+                <font size="3" color="red">Не все поля были введены</font>
+              </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+              <div class="col-md-12">
+                <div class="button-container justify-content-center align-items-center">
+                  <button (click)="create(link)" class="btn btn-neutral btn-lg">
+                    Подписаться
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,3 +1,40 @@
-<p>
-  user-page works!
-</p>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Отслеживаемые репозитории </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <tr *ngFor="let rep of list">
+                <td>
+                  <a class="dropdown-item" href="{{rep.link}}">Название: {{rep.name}}</a><br>
+                  <div>Создатель: {{rep.name}}</div><br>
+                  <div>Количество коммитов: {{rep.commits}}</div><br>
+                </td>
+                <td class="td-actions text-right">
+                  <button type="button" rel="tooltip" title="Удалить" (click)="delete()" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </table>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="button-container">
+                  <button (click)="router.navigateByUrl('add-repository')" class="btn btn-neutral btn-lg">
+                    Добавить
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

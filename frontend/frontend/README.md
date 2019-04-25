@@ -64,8 +64,8 @@ Now Ui Dashboard
 │   │   │   ├── navbar
 │   │   │   │   ├── navbar.component.css
 │   │   │   │   ├── navbar.component.html
-│   │   │   │   ├── navbar.component.spec.ts
-│   │   │   │   └── navbar.component.ts
+│   │   │   │   ├── toolbar.component.spec.ts
+│   │   │   │   └── toolbar.component.ts
 │   │   │   └── sidebar
 │   │   │       ├── sidebar.component.css
 │   │   │       ├── sidebar.component.html

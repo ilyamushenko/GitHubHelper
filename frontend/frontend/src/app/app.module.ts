@@ -1,21 +1,20 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import {AppRoutingModule, routes} from './app.routing';
+import { ComponentsModule } from './components/components.module';
+import { AppComponent } from './app.component';
 import {CommonModule} from '@angular/common';
 import {ChartsModule} from 'ng2-charts';
-import {AppRoutingModule, routes} from './app.routing';
-import { AppComponent } from './app.component';
-import {FooterComponent} from './footer/footer.component';
 import {AboutUsComponent} from './about-us/about-us.component';
-import {AuthorizationComponent} from './authorization/authorization.component';
-import {MainPageComponent} from './main-page/main-page.component';
-import {UserPageComponent} from './user-page/user-page.component';
-import {ToolbarComponent} from './toolbar/toolbar.component';
-
+import { AuthorizationComponent} from './authorization/authorization.component';
+import { MainPageComponent} from './main-page/main-page.component';
+import { UserPageComponent} from './user-page/user-page.component';
+import { AddRepositoryComponent } from './add-repository/add-repository.component';
 
 @NgModule({
   imports: [
@@ -26,6 +25,7 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ComponentsModule,
     RouterModule,
     AppRoutingModule,
     NgbModule,
@@ -33,12 +33,12 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
   ],
   declarations: [
     AppComponent,
-    FooterComponent,
     AboutUsComponent,
     AuthorizationComponent,
     MainPageComponent,
     UserPageComponent,
-    ToolbarComponent
+    AddRepositoryComponent
+
   ],
   providers: [
     /*HttpService, {
