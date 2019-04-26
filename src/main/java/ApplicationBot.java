@@ -9,10 +9,11 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
-public class Main {
+public class ApplicationBot {
 
     private static String PROXY_HOST = "207.180.233.152"; /* proxy host */
     private static Integer PROXY_PORT = 50195; /* proxy port */
+    private static Bot bot;
 
 //    private static String PROXY_USER = "hotgram" /* proxy user */;
 //    private static String PROXY_PASSWORD = "0000086c67be17" /* proxy password */;
@@ -46,7 +47,7 @@ public class Main {
 
 
 
-            Bot bot = new Bot(botOptions);
+            bot = new Bot(botOptions);
 
             System.out.println("Предпоследние действие");
             telegramBotsApi.registerBot(bot);
