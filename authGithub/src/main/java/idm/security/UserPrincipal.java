@@ -95,5 +95,4 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         this.attributes = attributes;
     }
 
-
 }
