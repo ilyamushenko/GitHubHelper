@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {HttpServiceService} from '../http-service/http-service.service';
 
 @Component({
   selector: 'app-authorization',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private httpService: HttpServiceService) { }
 
   ngOnInit() {
   }

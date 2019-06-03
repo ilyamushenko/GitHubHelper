@@ -7,13 +7,15 @@ import { AuthorizationComponent} from './authorization/authorization.component';
 import { MainPageComponent} from './main-page/main-page.component';
 import { UserPageComponent} from './user-page/user-page.component';
 import { AddRepositoryComponent } from './add-repository/add-repository.component';
+import {RegistrationComponent} from './registration/registration.component';
 
 export const routes: Routes = [
   { path: '', component: MainPageComponent},
   { path: 'authorization', component: AuthorizationComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'user', component: UserPageComponent },
+  { path: 'info', component: UserPageComponent },
   { path: 'add-repository', component: AddRepositoryComponent}
+  //{ path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({

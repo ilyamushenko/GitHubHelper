@@ -4,5 +4,33 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
+  },
+
+  "/login": {
+    "target": "https://github.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
+  "/user": {
+    "target": "https://api.github.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
+  "/users": {
+    "target": "https://api.github.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
+  "/repos": {
+    "target": "https://api.github.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }
