@@ -87,12 +87,12 @@ public class UserController {
     //ToDO: заменить токен на ghToken
     @PostMapping("/check")
     public GithubUser checkUser(Map<String, String> tokenAndChatId) {
-        Long chatId = Long.valueOf(tokenAndChatId.get("chatid"));
-        Long ghToken = Long.valueOf(tokenAndChatId.get("token"));
+        Long    chatId = Long.valueOf(tokenAndChatId.get("chatId"));
+        String ghToken = tokenAndChatId.get("token");
         GithubUser githubUser = null;
         try {
             if(QueueChatIds.check(chatId)) {
-                GitHub gitHub = GitHub.connectUsingOAuth("1aaae51f46631ed27508c2f260118d3f50ef5880");
+                GitHub gitHub = GitHub.connectUsingOAuth(ghToken);
 
                 String login        = gitHub.getMyself().getLogin();
                 String avatarUrl    = gitHub.getMyself().getAvatarUrl();
@@ -115,10 +115,10 @@ public class UserController {
     }
 
     @GetMapping("/repos")
-    public List userRepositories(){//@RequestHeader(value = "token") String token) {
+    public List userRepositories(@RequestHeader(value = "token") String token) {
         List<Repository> myRepositories = new ArrayList<>();
         try {
-            GitHub gitHub = GitHub.connectUsingOAuth("1aaae51f46631ed27508c2f260118d3f50ef5880");
+            GitHub gitHub = GitHub.connectUsingOAuth(token);
             Collection<GHRepository> repositoriesFromGitHubApi = gitHub.getMyself().getAllRepositories().values();
             repositoriesFromGitHubApi.forEach(rep -> {
                 String  fullName         = rep.getName();
@@ -128,8 +128,8 @@ public class UserController {
                 String  ownerLogin       = null;
                 String  ownerHtmlUrl     = null;
                 try {
-                        ownerLogin   = rep.getOwner().getLogin();
-                        ownerHtmlUrl  = rep.getOwner().getHtmlUrl().toString();
+                        ownerLogin       = rep.getOwner().getLogin();
+                        ownerHtmlUrl     = rep.getOwner().getHtmlUrl().toString();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
