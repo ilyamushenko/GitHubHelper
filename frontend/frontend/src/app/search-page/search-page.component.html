@@ -1,48 +1,35 @@
 <div class="panel-header panel-header-sm" style="background: #f96332;">
 </div>
-<div class="main-content" style="background: rgb(211, 233, 237);">
-  <div class="row">
+<div class="main-content" style="background: rgb(211, 233, 237);"><br>
+	<div class="row">
 	<div class="col-md-2"></div>
-    <div class="col-md-8">
-	<div class="card">
-        <div class="card-body" style="height: 125px;">
-          <div class="row">
-              <div class="col-md-5 pr-1">
-                <div class="form-group">
-                  <label>Login</label>
-                  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.login}}">
-                </div>
-              </div>
-			  <div class="col-md-3 pr-1">
-                <div class="form-group">
-                  <label>Имя</label>
-                  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.name}}">
-                </div>
-              </div>
-			  <div class="col-md-4">
-				<div class="image">
-				<meta property="og:image" content="{{avatar_url}}">
-				  <img src="{{avatar_url}}" alt="...">
-				</div>
+	  <div class="col-md-8">
+		<div style="background: white; border-radius:15rem;">
+		  <div class="input-group no-border">
+			<input type="text" id="searchString1" [(ngModel)]="searchString1" class="form-control" placeholder="Search..." value="">
+			<div class="input-group-append">
+			  <div class="input-group-text">
+				<i class="now-ui-icons ui-1_zoom-bold" (click)="search(searchString1)"></i>
 			  </div>
-            </div>
+			</div>
+		  </div>
 		</div>
-	</div>
-	</div>
+	  </div>
 	</div>
 	<div class="row">
 	<div class="col-md-2"></div>
-	<div class="col-md-8">
+	<div class="col-md-8">	
       <div class="card">
         <div class="card-header">
+		
 		<div class="row">
 			<div class="col-md-9 pr-1">
-				<h4 class="card-title">Ваши репозитории </h4>
-			</div>
-			<div class="col-md-2 pr-1">
+				<h4 class="card-title">Результаты поиска </h4>
 			</div>
 			<div class="col-md-1 pr-1">
-				<h4 class="card-title " style="color: #f96332;">{{repos.length}}</h4>
+			</div>
+			<div class="col-md-2 pr-1">
+				<h4 class="card-title " style="color: #f96332;">{{resCount}}</h4>
 			</div>
 		  </div>
         </div>
@@ -51,10 +38,10 @@
             <table class="table">
               <tr *ngFor="let rep of repos">
                 <td>
-                  <div>Название: <a href="{{rep.html_url}}">{{rep.name}}</a></div><br>
+                  <div>Название: <a href="{{rep.html_url}}">{{rep.full_name}}</a></div><br>
                   <div>Создатель: <a href ="{{rep.owner.html_url}}">{{rep.owner.login}}</a></div><br>
                   <div>Дата последнего изменения: {{rep.pushed_at}}</div><br>
-				  <div *ngIf="rep.description != null">Описание: {{rep.description}}</div><br>
+				  <div>Описание: {{rep.description}}</div><br>
 				  <div *ngIf="showCommits == -1 || showCommits != rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
 				  <div *ngIf="showCommits > -1 && showCommits == rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
 				
@@ -79,6 +66,18 @@
             </table>
           </div>
         </div>
+      </div>
+	  <div *ngIf="pages > 1">
+        <button type="button" rel="tooltip" title="На предыдущую" (click)="changePage(-1, 'page')" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
+          <i class="now-ui-icons arrows-1_minimal-left"></i>
+        </button>
+		<div class="form-check btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" *ngFor="let index of createRange(pages)">
+		  <input *ngIf="index == selectedPage" class="form-control" type="button" value="{{index}}" (click)="goToPage(index, 'page')" style="border-color:#fd7e14">
+		  <input *ngIf="index != selectedPage" class="form-control" type="button" value="{{index}}" (click)="goToPage(index, 'page')">
+		</div>
+        <button type="button" rel="tooltip" title="На следующую" (click)="changePage(1, 'page')" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
+          <i class="now-ui-icons arrows-1_minimal-right"></i>
+        </button>
       </div>
     </div>
   </div>

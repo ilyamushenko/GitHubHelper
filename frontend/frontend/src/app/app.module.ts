@@ -18,6 +18,8 @@ import { AddRepositoryComponent } from './add-repository/add-repository.componen
 import { RegistrationComponent } from './registration/registration.component';
 import {HttpServiceService} from './http-service/http-service.service';
 import {MyInterceptor} from './http-service/http-service.interceptor';
+import { SearchPageComponent } from './search-page/search-page.component';
+import { SubscribeRepComponent } from './subscribe-rep/subscribe-rep.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,6 @@ import {MyInterceptor} from './http-service/http-service.interceptor';
     FormsModule,
     ChartsModule,
     BrowserAnimationsModule,
-    FormsModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
@@ -41,7 +42,9 @@ import {MyInterceptor} from './http-service/http-service.interceptor';
     MainPageComponent,
     UserPageComponent,
     AddRepositoryComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SearchPageComponent,
+    SubscribeRepComponent
 
   ],
   providers: [

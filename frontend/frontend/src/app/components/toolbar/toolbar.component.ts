@@ -21,6 +21,11 @@ export class ToolbarComponent implements OnInit {
       return false;
     }
   }
+  
+  search(searchString: string): void {
+	localStorage.setItem('searchString', searchString);
+	this.router.navigateByUrl('result-page');
+  }
 
   ngOnInit() {
     this.account = localStorage.getItem('username');
@@ -28,7 +33,7 @@ export class ToolbarComponent implements OnInit {
 
   exit(): void {
     localStorage.setItem('email', 'Войти');
-    localStorage.setItem('password', '');
-    this.router.navigateByUrl('/log');
+    localStorage.setItem('token', null);
+    this.router.navigateByUrl('');
   }
 }

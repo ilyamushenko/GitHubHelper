@@ -9,6 +9,7 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit{
 
   ngOnInit(): void {
+	  localStorage.setItem('page', '1');
     if (localStorage.getItem('email') === null) {
       localStorage.setItem('email', 'Войти');
     }

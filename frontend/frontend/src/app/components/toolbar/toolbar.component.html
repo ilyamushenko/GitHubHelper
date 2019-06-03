@@ -1,23 +1,25 @@
 
-<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute bg-primary fixed-top">
   <div class="container-fluid" style="background: #f96332;">
-    <div class="navbar-wrapper">
-      <ul class="navbar-nav">
-        <li class="nav-item">
+    <div class="navbar-wrapper col-md-12">
+      <ul class="navbar-nav col-md-12">
+        <li class="nav-item col-md-2 pr-1">
           <a class="nav-link" href=""><h5>GitHubHelper</h5></a>
         </li>
-        <li class="nav-item text-right" *ngIf="isAuth() == true" ngbDropdown>
-          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
-            <i class="now-ui-icons users_single-02"></i>
-            <p>
-              <span class="d-lg-none d-md-block"> {{account}}</span>
-            </p>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a class="dropdown-item" href="authorization">Войти</a>
-          </div>
-        </li>
-        <li class="nav-item" *ngIf="isAuth() == false" ngbDropdown>
+		<li class="col-md-6 pr-1"></li>
+		<li class="col-md-3 pr-1" *ngIf="isAuth() != true">
+			<form>
+            <div class="input-group no-border">
+              <input type="text" name="searchString" id="searchString" [(ngModel)]="searchString" class="form-control" placeholder="Search..." value="">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <i class="now-ui-icons ui-1_zoom-bold" (click)="search(searchString)"></i>
+                </div>
+              </div>
+            </div>
+          </form>
+		</li>
+        <li class="nav-item col-md-1" *ngIf="isAuth() == false" ngbDropdown>
           <a class="nav-link" id="dropdownBasic2" ngbDropdownToggle>
             <i class="now-ui-icons users_single-02"></i>
             <p>
@@ -25,7 +27,8 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic2">
-            <a class="dropdown-item" href="user">Моя страница</a>
+            <a class="dropdown-item" href="subscribe-list">Мои подписки</a>
+			<a class="dropdown-item" href="info">Мои репозитории</a>
             <a class="dropdown-item" (click)="exit()">Выйти</a>
           </div>
         </li>

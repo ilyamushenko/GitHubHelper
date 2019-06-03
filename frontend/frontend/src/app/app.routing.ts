@@ -8,14 +8,18 @@ import { MainPageComponent} from './main-page/main-page.component';
 import { UserPageComponent} from './user-page/user-page.component';
 import { AddRepositoryComponent } from './add-repository/add-repository.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {SubscribeRepComponent} from './subscribe-rep/subscribe-rep.component';
+import {SearchPageComponent} from './search-page/search-page.component';
 
 export const routes: Routes = [
   { path: '', component: MainPageComponent},
-  { path: 'authorization', component: AuthorizationComponent },
+  // { path: 'authorization', component: AuthorizationComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'info', component: UserPageComponent },
+  { path: 'subscribe-list', component: SubscribeRepComponent },
+  { path: 'result-page', component: SearchPageComponent },
   { path: 'add-repository', component: AddRepositoryComponent}
-  //{ path: 'registration', component: RegistrationComponent}
+  // { path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({

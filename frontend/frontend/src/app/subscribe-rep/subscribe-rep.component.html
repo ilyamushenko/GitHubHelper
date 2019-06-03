@@ -2,49 +2,40 @@
 </div>
 <div class="main-content" style="background: rgb(211, 233, 237);">
   <div class="row">
-	<div class="col-md-2"></div>
+   <div class="col-md-2"></div>
     <div class="col-md-8">
-	<div class="card">
-        <div class="card-body" style="height: 125px;">
-          <div class="row">
-              <div class="col-md-5 pr-1">
-                <div class="form-group">
-                  <label>Login</label>
-                  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.login}}">
-                </div>
-              </div>
-			  <div class="col-md-3 pr-1">
-                <div class="form-group">
-                  <label>Имя</label>
-                  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.name}}">
-                </div>
-              </div>
-			  <div class="col-md-4">
-				<div class="image">
-				<meta property="og:image" content="{{avatar_url}}">
-				  <img src="{{avatar_url}}" alt="...">
+		<div class="card">
+			<div class="card-body" style="height: 125px;">
+			  <div class="row">
+				  <div class="col-md-5 pr-1">
+					<div class="form-group">
+					  <label>Login</label>
+					  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.login}}">
+					</div>
+				  </div>
+				  <div class="col-md-3 pr-1">
+					<div class="form-group">
+					  <label>Имя</label>
+					  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.name}}">
+					</div>
+				  </div>
+				  <div class="col-md-4">
+					<div class="image">
+					<meta property="og:image" content="{{avatar_url}}">
+					  <img src="{{avatar_url}}" alt="...">
+					</div>
+				  </div>
 				</div>
-			  </div>
-            </div>
+			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	<div class="row">
+  </div>
+  <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
       <div class="card">
         <div class="card-header">
-		<div class="row">
-			<div class="col-md-9 pr-1">
-				<h4 class="card-title">Ваши репозитории </h4>
-			</div>
-			<div class="col-md-2 pr-1">
-			</div>
-			<div class="col-md-1 pr-1">
-				<h4 class="card-title " style="color: #f96332;">{{repos.length}}</h4>
-			</div>
-		  </div>
+          <h4 class="card-title">Репозитории, уведомления о которых вы получаете </h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -54,7 +45,6 @@
                   <div>Название: <a href="{{rep.html_url}}">{{rep.name}}</a></div><br>
                   <div>Создатель: <a href ="{{rep.owner.html_url}}">{{rep.owner.login}}</a></div><br>
                   <div>Дата последнего изменения: {{rep.pushed_at}}</div><br>
-				  <div *ngIf="rep.description != null">Описание: {{rep.description}}</div><br>
 				  <div *ngIf="showCommits == -1 || showCommits != rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
 				  <div *ngIf="showCommits > -1 && showCommits == rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
 				
