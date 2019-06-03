@@ -17,14 +17,20 @@ public class Repository {
     private String pushedAt;
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private String ownerLogin;
+    @Column(nullable = false)
+    private String ownerHtmlUrl;
     @ManyToMany(mappedBy = "repositories")
     private Set<GithubUser> subscribers;
 
     public Repository() {
     }
 
-    public Repository(String fullName, String htmlUrl, String pushedAt, String description, Set<GithubUser> subscribers) {
+    public Repository(String fullName, String htmlUrl, String ownerLogin, String pushedAt, String ownerHtmlUrl, String description, Set<GithubUser> subscribers) {
         this.fullName = fullName;
+        this.ownerHtmlUrl = ownerHtmlUrl;
+        this.ownerLogin = ownerLogin;
         this.htmlUrl = htmlUrl;
         this.pushedAt = pushedAt;
         this.description = description;
@@ -35,47 +41,71 @@ public class Repository {
         return repositoryId;
     }
 
-    public void setRepositoryId(Long repositoryId) {
+    public Repository setRepositoryId(Long repositoryId) {
         this.repositoryId = repositoryId;
+        return this;
+    }
+
+    public String getOwnerLogin() {
+        return ownerLogin;
+    }
+
+    public Repository setOwnerLogin(String ownerLogin) {
+        this.ownerLogin = ownerLogin;
+        return this;
+    }
+
+    public String getOwnerHtmlUrl() {
+        return ownerHtmlUrl;
+    }
+
+    public Repository setOwnerHtmlUrl(String ownerHtmlUrl) {
+        this.ownerHtmlUrl = ownerHtmlUrl;
+        return this;
     }
 
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public Repository setFullName(String fullName) {
         this.fullName = fullName;
+        return this;
     }
 
     public String getHtmlUrl() {
         return htmlUrl;
     }
 
-    public void setHtmlUrl(String htmlUrl) {
+    public Repository setHtmlUrl(String htmlUrl) {
         this.htmlUrl = htmlUrl;
+        return this;
     }
 
     public String getPushedAt() {
         return pushedAt;
     }
 
-    public void setPushedAt(String pushedAt) {
+    public Repository setPushedAt(String pushedAt) {
         this.pushedAt = pushedAt;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Repository setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public Set<GithubUser> getSubscribers() {
         return subscribers;
     }
 
-    public void setSubscribers(Set<GithubUser> subscribers) {
+    public Repository setSubscribers(Set<GithubUser> subscribers) {
         this.subscribers = subscribers;
+        return this;
     }
 }

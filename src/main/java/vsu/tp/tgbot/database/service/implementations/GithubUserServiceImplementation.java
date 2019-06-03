@@ -1,5 +1,6 @@
 package vsu.tp.tgbot.database.service.implementations;
 
+import org.kohsuke.github.GHUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vsu.tp.tgbot.database.dao.GithubUserDAO;
@@ -25,4 +26,11 @@ public class GithubUserServiceImplementation implements GithubUserService {
     public GithubUser getByIdChatTelegram(Long idChatTelegram) {
         return githubUserDAO.getByIdChatTelegram(idChatTelegram);
     }
+
+    @Override
+    public void add(GithubUser user) {
+        githubUserDAO.save(user);
+    }
+
+
 }

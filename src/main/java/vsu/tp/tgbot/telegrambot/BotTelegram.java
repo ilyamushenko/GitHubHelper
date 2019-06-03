@@ -40,6 +40,9 @@ class BotTelegram extends TelegramLongPollingBot {
                 case "/settings":
                     sendMessageTelegramBot(message, "Что будем настраивать?");
                     break;
+                case "/start":
+                    sendMessageTelegramBot(message, "Введите на сайте код: " + message.getChatId());
+
 //                default:
 //                    System.out.println("default");
 //                    sendMessageTelegramBot(message, "Введите команду");

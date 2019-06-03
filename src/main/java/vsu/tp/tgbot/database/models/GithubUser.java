@@ -45,55 +45,62 @@ public class GithubUser {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public GithubUser setUserId(Long userId) {
         this.userId = userId;
+        return this;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public GithubUser setLogin(String login) {
         this.login = login;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public GithubUser setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Long getIdChatTelegram() {
         return idChatTelegram;
     }
 
-    public void setIdChatTelegram(Long idChatTelegram) {
+    public GithubUser setIdChatTelegram(Long idChatTelegram) {
         this.idChatTelegram = idChatTelegram;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+        return this;
     }
 
     public String getProfileLink() {
         return profileLink;
     }
 
-    public void setProfileLink(String profileLink) {
+    public GithubUser setProfileLink(String profileLink) {
         this.profileLink = profileLink;
+        return this;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public GithubUser setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+        return this;
     }
 
     public Set<Repository> getRepositories() {
         return repositories;
     }
 
-    public void setRepositories(Set<Repository> repositories) {
+    public GithubUser setRepositories(Set<Repository> repositories) {
         this.repositories = repositories;
+        return this;
     }
 }

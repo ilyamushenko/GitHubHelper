@@ -11,8 +11,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 public class TelegramGitHubBotApi {
 
-    private final static String PROXY_HOST = "47.52.195.189"; /* proxy host */
-    private final static Integer PROXY_PORT = 443; /* proxy port */
+    private final static String PROXY_HOST = "2.234.226.32"; /* proxy host */
+    private final static Integer PROXY_PORT = 17779; /* proxy port */
 
     private Logger logger = LoggerFactory.getLogger(TelegramGitHubBotApi.class);
 

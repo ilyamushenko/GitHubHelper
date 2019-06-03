@@ -6,4 +6,5 @@ import vsu.tp.tgbot.database.models.GithubUser;
 public interface GithubUserDAO extends JpaRepository<GithubUser, Integer> {
     GithubUser getByUserId(Long userId);
     GithubUser getByIdChatTelegram(Long chatId);
+
 }
