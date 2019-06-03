@@ -81,11 +81,23 @@ export class UserPageComponent implements OnInit {
   }
   
   getInfo(): void {	  
-    this.httpService.get('user').subscribe(
+	this.httpService.post('user/check', {
+		chatId: localStorage.getItem('chatId'),
+		token: localStorage.getItem('token')
+	}).subscribe(
+	data => {
+		console.log('data ' + data);
+	},
+	error => {
+		console.log('error ' + error);
+		this.user = error;
+		localStorage.setItem('email', error.login);
+	});
+    /*this.httpService.get('user').subscribe(
 	  data => {
 		this.user = data;
 		localStorage.setItem('email', data.login);
-	});
+	});*/
   
 	this.httpService.get('user/repos').subscribe(
 	  data => {

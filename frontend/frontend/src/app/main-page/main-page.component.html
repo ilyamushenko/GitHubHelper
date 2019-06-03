@@ -1,26 +1,45 @@
 <div class="panel-header panel-header-sm" style="background: #f96332;">
 </div>
 <div class="main-content" style="background: rgb(211, 233, 237);">
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row justify-content-center align-items-center">
+	<div class="col-md-2"></div>
+    <div class="col-md-8">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Главная страница</h4>
         </div>
         <div class="card-body">
-          <div>Веб-приложение GitHubHelper предназначено для упрощения жизни пользователей GitHub.<br>
-            С ним вы сможете получать уведомления о новом commit-е прямо в момент его создания,<br>
-            с помощью уведомлений, отправляемых вам нашим ботом.
+          <div class="row justify-content-center align-items-center">
+			  <div class="col-md-12">
+					<div class="form-group">
+					Веб-приложение GitHubHelper предназначено для упрощения жизни пользователей GitHub.
+					С ним вы сможете получать уведомления о новом commit-е прямо в момент его создания,
+					с помощью уведомлений, отправляемых вам нашим ботом.
+					</div>
+			  </div>
           </div>
-		  <div>
-			<p>Начать пользоваться сервисом</p>
-			  <a href="{{githubUrl}}" class="login__btn login__btn--full"
-			  md-raised-button="primary">
-			  Войти
-			  </a>
+		  <div class="row justify-content-center align-items-center" *ngIf="id == null">
+			  <div class="col-md-12">
+                <div class="form-group">
+				  <a style="font-size: 16px;" href="https://телеграм.онлайн/#/im?p=@tg_test_github_bot" target="_blank">Подписаться на бота</a><br>
+                  <label for="chatId">Введите полученный код</label>
+				  <input class="form-control" type="text" placeholder="1234567890" name="chatId" id="chatId" [(ngModel)]="chatId">
+				  <p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: center; font-size: medium;" (click)="getChatId(chatId)">Отправить код</p>
+                </div>
+              </div>
+            </div> 
+			  			  
+		  <div class="row justify-content-center align-items-center" *ngIf="id != null">
+		    <div class="col-md-12">
+                <div class="form-group">
+					<p>Начать пользоваться сервисом</p>
+					<a href="{{githubUrl}}" class="login__btn login__btn--full" style="text-align: center;" md-raised-button="primary"> Войти </a>
+			  </div>
+			</div>
 		  </div>
         </div>
       </div>
     </div>
+	<div class="col-md-2"></div>
   </div>
 </div>

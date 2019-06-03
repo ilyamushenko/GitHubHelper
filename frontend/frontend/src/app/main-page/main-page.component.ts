@@ -13,10 +13,16 @@ export const development = {
 })
 export class MainPageComponent implements OnInit {
 	githubUrl: string = 'https://github.com/login/oauth/authorize?client_id=' + development.client_id + '&scope=user&redirect_uri=' + development.redirect_uri;
+	id: string = null;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  
+  getChatId(chatId: string): void {
+	  this.id = chatId;
+	  localStorage.setItem('chatId', chatId);
   }
 
 }
