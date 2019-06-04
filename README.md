@@ -4,6 +4,7 @@
 Cсылки:
 - trello: https://trello.com/b/AKIZ31Nr/work-with-documentation-and-services
 - RealtimeBoard: https://miro.com/app/board/o9J_kxmm3-M=/
+- Демонстрация (видео): https://yadi.sk/i/ruzUCjmZOKlBbQ
 
 В нашем репозитории несколько веток:
 - documentation: ветка, содержащая папку с документацией к нашему проекту
