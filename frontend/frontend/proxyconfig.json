@@ -13,7 +13,21 @@
     "changeOrigin": true
   },
 
+  "/repos": {
+    "target": "http://api.github.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
   "/search": {
+    "target": "https://api.github.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
+  "/find": {
     "target": "http://localhost:8080",
     "secure": false,
     "logLevel": "debug",

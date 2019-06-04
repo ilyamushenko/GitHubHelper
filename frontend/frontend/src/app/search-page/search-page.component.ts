@@ -106,7 +106,14 @@ export class SearchPageComponent implements OnInit {
 	});
   }
 
-  subscribe(id: string): void {
+  subscribe(repository): void {
+    this.httpService.post('user/subscribe', {
+      repositoryFullName: repository
+    }).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 }
 

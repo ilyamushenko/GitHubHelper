@@ -54,30 +54,33 @@ export class UserPageComponent implements OnInit {
   }
   
   getCommitsDate(commits: Array<any>): void {
-	  this.dates = Array<any>(this.count);
-	  var i: number;
-	  for (i = 0; i < this.count; i++) {
-		  this.dates[i] = commits[i].commit.author.date;
-		  var res = commits[i].commit.author.date.split('T', 2);
-		  var data = res[0].split('-', 3);
-		  var time = res[1].split(':', 2);
-		  this.commits[i].commit.author.date = data[2].toString() + '.' + data[1].toString() + '.' + data[0].toString() + ' ' + time[0].toString() + ':' + time[1].toString(); 
-		}
+    this.dates = Array<any>(this.count);
+    var i: number;
+    for (i = 0; i < this.count; i++) {
+      this.dates[i] = commits[i].commit.author.date;
+      var res = commits[i].commit.author.date.split('T', 2);
+      var data = res[0].split('-', 3);
+      var time = res[1].split(':', 2);
+      this.commits[i].commit.author.date = data[2].toString() + '.' + data[1].toString() + '.' + data[0].toString() + ' ' + time[0].toString() + ':' + time[1].toString();
+    }
   }
   
   getCommits(id:string, owner: string, repository: string): void {
-	  if (this.showCommits > -1) {
-		  this.showCommits = -1;
-	  } else {
-		  this.showCommits = Number(id);
-		  this.httpService.get('/repos/' + owner + '/' + repository + '/commits').subscribe(
-		  data => {
-			  console.log(data);
-			  this.count = data.length;
-			  this.commits = data;
-			  this.getCommitsDate(data);
-		  });
-	  }
+    console.log('inside');
+    if (this.showCommits > -1) {
+      console.log('v null');
+      this.showCommits = -1;
+    } else {
+      console.log('request');
+      this.showCommits = Number(id);
+      this.httpService.get('/repos/' + owner + '/' + repository + '/commits').subscribe(
+        data => {
+          console.log(data);
+          this.count = data.length;
+          this.commits = data;
+          //this.getCommitsDate(data);
+        });
+    }
   }
   
   getInfo(): void {	  
@@ -87,11 +90,11 @@ export class UserPageComponent implements OnInit {
 	}).subscribe(
 	data => {
 		console.log('data ' + data);
+    this.user = data;
+    console.log(this.user + ' ' + this.user.login);
+    localStorage.setItem('email', data.login);
 	},
 	error => {
-		console.log('error ' + error);
-		this.user = error;
-		localStorage.setItem('email', error.login);
 	});
     /*this.httpService.get('user').subscribe(
 	  data => {
@@ -107,8 +110,14 @@ export class UserPageComponent implements OnInit {
 	});
   }
 
-  delete() {
-
+  subscribe(repository): void {
+    this.httpService.post('user/subscribe', {
+    repositoryFullName: repository
+    }).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
 }
