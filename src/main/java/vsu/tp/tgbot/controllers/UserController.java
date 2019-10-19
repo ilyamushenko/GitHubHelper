@@ -41,7 +41,7 @@ public class UserController {
     @GetMapping("/test")
     public Object tryToLoginGithub() {
         String login = "ilmamen36@yandex.ru";
-        String password = "nosok1488";
+        String password = "1q2w3e4r5t6y";
         GitHub gitHub;
         GHRepositorySearchBuilder task = null;
 
