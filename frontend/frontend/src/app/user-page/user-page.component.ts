@@ -12,7 +12,9 @@ export class UserPageComponent implements OnInit {
   user: any;
   repos: Array<any>;
   dates: Array<any>;
+  indexies: Array<any>;
   count: number;
+  commitCount: number;
   commits: Array<any>;
   showCommits: number = -1;
 
@@ -66,17 +68,17 @@ export class UserPageComponent implements OnInit {
   }
   
   getCommits(id:string, owner: string, repository: string): void {
-    console.log('inside');
+    //console.log('inside');
     if (this.showCommits > -1) {
-      console.log('v null');
+      //console.log('v null');
       this.showCommits = -1;
     } else {
-      console.log('request');
+      //console.log('request');
       this.showCommits = Number(id);
       this.httpService.get('/repos/' + owner + '/' + repository + '/commits').subscribe(
         data => {
-          console.log(data);
-          this.count = data.length;
+          //console.log(data);
+          this.commitCount = data.length;
           this.commits = data;
           //this.getCommitsDate(data);
         });
@@ -84,7 +86,7 @@ export class UserPageComponent implements OnInit {
   }
   
   getInfo(): void {	  
-	this.httpService.post('user/check', {
+	/*this.httpService.post('user/check', {
 		chatId: localStorage.getItem('chatId'),
 		token: localStorage.getItem('token')
 	}).subscribe(
@@ -95,19 +97,29 @@ export class UserPageComponent implements OnInit {
     localStorage.setItem('email', data.login);
 	},
 	error => {
-	});
-    /*this.httpService.get('user').subscribe(
+	});*/
+    this.httpService.get('user').subscribe(
 	  data => {
 		this.user = data;
 		localStorage.setItem('email', data.login);
-	});*/
+	});
   
 	this.httpService.get('user/repos').subscribe(
 	  data => {
-		this.repos = data;
+		  console.log('data ' + data);
 		this.count = Number(data.length);
+		this.repos = data;
+		console.log('repos ' + this.repos[0].full_name);
 		this.getDate(data);
 	});
+  }
+  
+  getIndexies(): void {
+    this.indexies = Array<any>(this.count)
+    var i: number;
+    for (i = 0; i < this.count; i++) {
+      this.indexies[i] = i;
+    }
   }
 
   subscribe(repository): void {

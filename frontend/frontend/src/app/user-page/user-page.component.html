@@ -42,7 +42,7 @@
 			<div class="col-md-2 pr-1">
 			</div>
 			<div class="col-md-1 pr-1">
-				<h4 class="card-title " style="color: #f96332;">{{repos.length}}</h4>
+				<h4 class="card-title " style="color: #f96332;">{{count}}</h4>
 			</div>
 		  </div>
         </div>
@@ -51,9 +51,9 @@
             <table class="table">
               <tr *ngFor="let rep of repos">
                 <td>
-                  <div>Название: <a href="{{rep.htmlUrl}}">{{rep.fullName}}</a></div><br>
-                  <div>Создатель: <a href ="{{rep.ownerHtmlUrl}}">{{rep.ownerLogin}}</a></div><br>
-                  <div>Дата последнего изменения: {{rep.pushedAt}}</div><br>
+                  <div>Название: <a href="{{rep.html_url}}">{{rep.full_name}}</a></div><br>
+                  <div>Создатель: <a href ="{{rep.owner.html_url}}">{{rep.owner.login}}</a></div><br>
+                  <div>Дата последнего изменения: {{rep.pushed_at}}</div><br>
 				  <div *ngIf="rep.description != null">Описание: {{rep.description}}</div><br>
           <div *ngIf="showCommits == -1 || showCommits != rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
           <div *ngIf="showCommits > -1 && showCommits == rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
