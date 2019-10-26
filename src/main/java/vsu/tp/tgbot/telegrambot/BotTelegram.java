@@ -33,7 +33,7 @@ class BotTelegram extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        /*List<User> newChatMembers = update.getMessage().getNewChatMembers();
+        List<User> newChatMembers = update.getMessage().getNewChatMembers();
         if (newChatMembers != null) {
             for (User user : newChatMembers) {
                logger.info("Username: {}, FirstName: {}", user.getUserName(), user.getFirstName());
@@ -95,7 +95,7 @@ class BotTelegram extends TelegramLongPollingBot {
 ////                    sendMessageTelegramBot(message, "Введите команду");
 ////                    break;
 //            }
-        }*/
+        }
     }
 
     public void sendMessageTelegramBot (Message message, String text) {
