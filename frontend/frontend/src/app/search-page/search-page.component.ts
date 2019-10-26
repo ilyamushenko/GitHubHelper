@@ -107,13 +107,20 @@ export class SearchPageComponent implements OnInit {
   }
 
   subscribe(repository): void {
-    this.httpService.post('user/subscribe', {
-      repositoryFullName: repository
+	  console.log(localStorage.getItem('email') + ' ' + repository.full_name + ' ' + repository.html_url + ' ' + repository.pushed_at + ' ' + repository.description + ' ' + repository.owner.login + ' ' + repository.owner.html_url);
+    /*this.httpService.post('subscribe', {
+		login: localStorage.getItem('email'),
+		fullName: repository.full_name,
+		htmlUrl: repository.html_url,
+		pushedAt: repository.pushed_at,
+		description: repository.description,
+		ownerLogin: repository.owner.login,
+		ownerHtmlUrl: repository.owner.html_url 
     }).subscribe(
       data => {
         console.log(data);
       }
-    );
+    );*/
   }
 }
 

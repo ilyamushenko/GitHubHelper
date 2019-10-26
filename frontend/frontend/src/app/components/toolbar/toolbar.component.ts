@@ -15,7 +15,7 @@ export class ToolbarComponent implements OnInit {
 
   isAuth(): boolean {
     this.account = localStorage.getItem('email');
-    if (this.account === 'Войти') {
+    if (this.account === 'Войти' && localStorage.getItem('isAuth') === 'false') {
       return true;
     } else {
       return false;
@@ -34,6 +34,7 @@ export class ToolbarComponent implements OnInit {
   exit(): void {
     localStorage.setItem('email', 'Войти');
     localStorage.setItem('token', null);
+	localStorage.setItem('isAuth', 'false');
     this.router.navigateByUrl('');
   }
 }

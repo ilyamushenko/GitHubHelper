@@ -9,7 +9,8 @@ import { development } from '../main-page/main-page.component';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-  user: any;
+  userLogin: string = localStorage.getItem('email');
+  userName: string = localStorage.getItem('name');
   repos: Array<any>;
   dates: Array<any>;
   indexies: Array<any>;
@@ -21,7 +22,7 @@ export class UserPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpService: HttpServiceService) { }
 
   ngOnInit() {
-	if (localStorage.getItem('token') === null) {
+	/*if (localStorage.getItem('token') === null) {
 		var code: string;
 		this.route.queryParams.subscribe(
 		data => {
@@ -40,7 +41,8 @@ export class UserPageComponent implements OnInit {
 		 });
 	} else {
 		this.getInfo();
-	}
+	}*/
+	this.getInfo();
   }
   
   getDate(repos: Array<any>): void {
@@ -51,8 +53,8 @@ export class UserPageComponent implements OnInit {
 		  var res = repos[i].pushed_at.split('T', 2);
 		  var data = res[0].split('-', 3);
 		  var time = res[1].split(':', 2);
-		  this.repos[i].pushed_at = data[2].toString() + '.' + data[1].toString() + '.' + data[0].toString() + ' ' + time[0].toString() + ':' + time[1].toString(); 
-		}
+		  this.repos[i].pushed_at = data[2].toString() + '.' + data[1].toString() + '.' + data[0].toString() + ' ' + time[0].toString() + ':' + time[1].toString();
+	    }
   }
   
   getCommitsDate(commits: Array<any>): void {
@@ -68,19 +70,15 @@ export class UserPageComponent implements OnInit {
   }
   
   getCommits(id:string, owner: string, repository: string): void {
-    //console.log('inside');
     if (this.showCommits > -1) {
-      //console.log('v null');
       this.showCommits = -1;
     } else {
-      //console.log('request');
       this.showCommits = Number(id);
       this.httpService.get('/repos/' + owner + '/' + repository + '/commits').subscribe(
         data => {
-          //console.log(data);
           this.commitCount = data.length;
           this.commits = data;
-          //this.getCommitsDate(data);
+		  this.getCommitsDate(data);
         });
     }
   }
@@ -98,18 +96,17 @@ export class UserPageComponent implements OnInit {
 	},
 	error => {
 	});*/
-    this.httpService.get('user').subscribe(
+    /*this.httpService.get('user').subscribe(
 	  data => {
-		this.user = data;
+		//this.user = data;
 		localStorage.setItem('email', data.login);
-	});
+		localStorage.setItem('name', data.name);
+	});*/
   
 	this.httpService.get('user/repos').subscribe(
 	  data => {
-		  console.log('data ' + data);
 		this.count = Number(data.length);
 		this.repos = data;
-		console.log('repos ' + this.repos[0].full_name);
 		this.getDate(data);
 	});
   }
@@ -123,8 +120,15 @@ export class UserPageComponent implements OnInit {
   }
 
   subscribe(repository): void {
-    this.httpService.post('user/subscribe', {
-    repositoryFullName: repository
+	  console.log(this.userLogin + ' ' + repository.full_name + ' ' + repository.html_url + ' ' + repository.pushed_at + ' ' + repository.description + ' ' + repository.owner.login + ' ' + repository.owner.html_url);
+    this.httpService.post('subscribe', {
+		login: this.userLogin,
+		fullName: repository.full_name,
+		htmlUrl: repository.html_url,
+		pushedAt: repository.pushed_at,
+		description: repository.description,
+		ownerLogin: repository.owner.login,
+		ownerHtmlUrl: repository.owner.html_url 
     }).subscribe(
       data => {
         console.log(data);

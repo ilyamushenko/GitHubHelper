@@ -7,25 +7,25 @@
 	<div class="card">
         <div class="card-body" style="height: 125px;">
           <div class="row">
-              <div class="col-md-5 pr-1">
-                <div class="form-group">
-                  <label>Login</label>
-                  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.login}}">
-                </div>
+            <div class="col-md-7 pr-1">
+              <div class="form-group">
+                <label>Login</label>
+                <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{userLogin}}">
               </div>
-			  <div class="col-md-3 pr-1">
-                <div class="form-group">
-                  <label>Имя</label>
-                  <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.name}}">
-                </div>
-              </div>
-			  <div class="col-md-4">
-				<div class="image">
-				<meta property="og:image" content="{{user.avatarUrl}}">
-				  <img src="{{user.avatarUrl}}" alt="...">
-				</div>
-			  </div>
             </div>
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Имя</label>
+                <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{userName}}">
+              </div>
+            </div>
+            <!---<div class="col-md-4">
+              <div class="image">
+                <meta property="og:image" content="{{avatar_url}}">
+                <img src="{{avatar_url}}" alt="...">
+              </div>
+            </div>--->
+          </div>
 		</div>
 	</div>
 	</div>
@@ -71,7 +71,7 @@
 				  </div>
 				</td>
                 <td class="td-actions text-right">
-                  <button type="button" rel="tooltip" title="Получать уведомления" (click)="subscribe(rep.fullName)" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
+                  <button type="button" rel="tooltip" title="Получать уведомления" (click)="subscribe(rep)" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
                     <i class="now-ui-icons ui-1_bell-53"></i>
                   </button>
                 </td>

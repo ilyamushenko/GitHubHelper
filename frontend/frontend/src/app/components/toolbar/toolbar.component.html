@@ -10,7 +10,7 @@
 		<li class="col-md-3 pr-1" *ngIf="isAuth() != true">
 			<form>
             <div class="input-group no-border">
-              <input type="text" name="searchString" id="searchString" [(ngModel)]="searchString" class="form-control" placeholder="Search..." value="">
+              <input style="padding: 20px;" type="text" name="searchString" id="searchString" [(ngModel)]="searchString" class="form-control" placeholder="Search..." value="">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <i class="now-ui-icons ui-1_zoom-bold" (click)="search(searchString)"></i>

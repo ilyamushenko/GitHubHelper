@@ -7,24 +7,24 @@
       <div class="card">
         <div class="card-body" style="height: 125px;">
           <div class="row">
-            <div class="col-md-5 pr-1">
+            <div class="col-md-7 pr-1">
               <div class="form-group">
                 <label>Login</label>
-                <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.login}}">
+                <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{userLogin}}">
               </div>
             </div>
-            <div class="col-md-3 pr-1">
+            <div class="col-md-5 pr-1">
               <div class="form-group">
                 <label>Имя</label>
-                <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{user.name}}">
+                <input type="text" class="form-control" style="background-color: #ffffff; color: #212529;" disabled value="{{userName}}">
               </div>
             </div>
-            <div class="col-md-4">
+            <!--<div class="col-md-4">
               <div class="image">
                 <meta property="og:image" content="{{avatar_url}}">
                 <img src="{{avatar_url}}" alt="...">
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -46,8 +46,8 @@
                   <div>Создатель: <a href ="{{rep.ownerHtmlUrl}}">{{rep.ownerLogin}}</a></div><br>
                   <div>Дата последнего изменения: {{rep.pushedAt}}</div><br>
                   <div *ngIf="rep.description != null">Описание: {{rep.description}}</div><br>
-                  <div *ngIf="showCommits == -1 || showCommits != rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
-                  <div *ngIf="showCommits > -1 && showCommits == rep.id" (click)="getCommits(rep.id, rep.owner.login, rep.name)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
+                  <div *ngIf="showCommits == -1 || showCommits != rep.id" (click)="getCommits(rep.fullName)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
+                  <div *ngIf="showCommits > -1 && showCommits == rep.id" (click)="getCommits(rep.fullName)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
 
                   <div *ngIf="showCommits > -1 && showCommits == rep.id">
                     <table class="table">
@@ -61,11 +61,11 @@
                     </table>
                   </div>
                 </td>
-                <!--<td class="td-actions text-right">
-                <button type="button" rel="tooltip" title="Получать уведомления" (click)="subscribe(rep.id)" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
-                <i class="now-ui-icons ui-1_bell-53"></i>
+                <td class="td-actions text-right">
+                <button type="button" rel="tooltip" title="Отписаться" (click)="unsubscribe(rep.id)" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
+                <i class="now-ui-icons nc-simple-remove"></i>
                 </button>
-                </td>-->
+                </td>
               </tr>
             </table>
           </div>

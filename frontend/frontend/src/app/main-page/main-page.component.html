@@ -19,7 +19,7 @@
 					</div>
 			  </div>
           </div>
-		  <div class="row justify-content-center align-items-center" *ngIf="login == 'Войти'">
+		  <div class="row justify-content-center align-items-center" *ngIf="func() == true">
 				<div class="col-md-12">
 					<div class="form-group">
 						<p>Войти через GitHub</p>
@@ -28,7 +28,7 @@
 				</div>  
             </div> 
 			  			  
-		  <div class="row justify-content-center align-items-center" *ngIf="login != 'Войти'">
+		  <div class="row justify-content-center align-items-center" *ngIf="func() == false">
 				<div class="col-md-12">
                 <div class="form-group">
 				  <p>Для продолжения вам необходимо:</p>

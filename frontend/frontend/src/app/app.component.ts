@@ -8,16 +8,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit{
 
-  /*ngOnInit(): void {
-     localStorage.setItem('orgPage', '0');
-     localStorage.setItem('resPage', '0');
-     localStorage.setItem('servPage', '0');
-     if (localStorage.getItem('email') === null) {
-       localStorage.setItem('email', 'Войти');
-     }*/
-  
   ngOnInit(): void {
 	  localStorage.setItem('page', '1');
+	  localStorage.setItem('isAuth', 'false');
     if (localStorage.getItem('email') === null) {
       localStorage.setItem('email', 'Войти');
     }

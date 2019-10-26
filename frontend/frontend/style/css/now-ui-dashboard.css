@@ -1511,7 +1511,7 @@ fieldset[disabled] .btn-link.active {
 
 .form-group.no-border .form-control,
 .input-group.no-border .form-control {
-  padding: 11px 19px;
+  padding: 20px 19px;
 }
 
 .form-group.no-border .form-control+.input-group-prepend .input-group-text,

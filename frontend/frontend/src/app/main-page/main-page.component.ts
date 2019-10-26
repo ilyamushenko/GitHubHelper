@@ -22,9 +22,9 @@ export class MainPageComponent implements OnInit {
 	
 
   constructor(private route: ActivatedRoute, private router: Router, private httpService: HttpServiceService) {
-	  if (localStorage.getItem('email') === 'Войти'){
+	  /*if (localStorage.getItem('email') === 'Войти'){
 	this.ngOnInit();
-	  }
+	  }*/
 	  //this.isUserAuth(localStorage.getItem('email'));
   }
 
@@ -56,29 +56,43 @@ export class MainPageComponent implements OnInit {
   }
   
   func(): boolean {
+	  console.log('func ' + localStorage.getItem('email') + ' ' + localStorage.getItem('token'));
 	  if (localStorage.getItem('email') === 'Войти') {
+		  this.getUser();
 		  return true;
 	  } else {
 		  return false;
 	  }
   }
   
-  isUserAuth(login: string): boolean {
-	  //console.log('im here');
+  getUser(): void {
+	  this.httpService.get('user').subscribe(
+	  data => {
+		localStorage.setItem('email', data.login);
+		localStorage.setItem('name', data.name);
+	});
+  }
+  
+  isUserAuth(): void {
+	  this.getUser();
 	  this.httpService.post('/auth/authenticate', {
-		  login: login,
+		  login: localStorage.getItem('email'),
       token: localStorage.getItem('token')
 	  }).subscribe(
 		  data => {
 			  console.log(data);
+			  if (data === 'success') {
+				  localStorage.setItem('isAuth', 'true');
+				  this.router.navigateByUrl('info');
+				  return true;
+			  }
+			  else {
+				  return false;
+			  }
+		  },
+		  error => {
+			  console.log('error ' + error);
 		  });
-	  if (this.success) {
-      this.router.navigateByUrl('info');
-      return true;
-    }
-	  else {
-	    return false;
-    }
   }
   
   getChatId(chatId: string): void {
@@ -91,8 +105,11 @@ export class MainPageComponent implements OnInit {
     }).subscribe(
       data => {
         console.log(data);
-      });
-    this.router.navigateByUrl('info');
+		localStorage.setItem('isAuth', 'true');
+		this.getUser();
+		this.router.navigateByUrl('info');
+      },
+	  error => {});
   }
 
 }

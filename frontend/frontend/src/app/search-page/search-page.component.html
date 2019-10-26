@@ -6,7 +6,7 @@
 	  <div class="col-md-8">
 		<div style="background: white; border-radius:15rem;">
 		  <div class="input-group no-border">
-			<input type="text" id="searchString1" [(ngModel)]="searchString1" class="form-control" placeholder="Search..." value="">
+			<input style="padding:20px;" type="text" id="searchString1" [(ngModel)]="searchString1" class="form-control" placeholder="Search..." value="">
 			<div class="input-group-append">
 			  <div class="input-group-text">
 				<i class="now-ui-icons ui-1_zoom-bold" (click)="search(searchString1)"></i>
@@ -58,7 +58,7 @@
 				  </div>
 				</td>
                 <td class="td-actions text-right">
-                  <button type="button" rel="tooltip" title="Получать уведомления" (click)="subscribe(rep.full_name)" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
+                  <button type="button" rel="tooltip" title="Получать уведомления" (click)="subscribe(rep)" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral">
                     <i class="now-ui-icons ui-1_bell-53"></i>
                   </button>
                 </td>
