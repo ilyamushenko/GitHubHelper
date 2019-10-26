@@ -1,8 +1,9 @@
 package vsu.tp.tgbot.database.models;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.Set;
-
 @Entity
 @Table(name = "repository")
 public class Repository {
@@ -21,7 +22,7 @@ public class Repository {
     private String ownerLogin;
     @Column(nullable = false)
     private String ownerHtmlUrl;
-    @ManyToMany(mappedBy = "repositories")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "repositories")
     private Set<GithubUser> subscribers;
 
     public Repository() {
@@ -107,5 +108,19 @@ public class Repository {
     public Repository setSubscribers(Set<GithubUser> subscribers) {
         this.subscribers = subscribers;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "repositoryId=" + repositoryId +
+                ", fullName='" + fullName + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", pushedAt='" + pushedAt + '\'' +
+                ", description='" + description + '\'' +
+                ", ownerLogin='" + ownerLogin + '\'' +
+                ", ownerHtmlUrl='" + ownerHtmlUrl + '\'' +
+                ", subscribers=" + subscribers +
+                '}';
     }
 }

@@ -121,6 +121,14 @@ public class UserController {
             GitHub gitHub = GitHub.connectUsingOAuth(token);
             Collection<GHRepository> repositoriesFromGitHubApi = gitHub.getMyself().getAllRepositories().values();
             repositoriesFromGitHubApi.forEach(rep -> {
+                List<GHCommit> ghCommits = rep.listCommits().asList();
+                for (GHCommit ghCommit : ghCommits) {
+                    try {
+                        ghCommit.getCommitShortInfo().getCommitDate(); // нужное
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 String  fullName         = rep.getName();
                 String  description      = rep.getDescription();
                 String  htmlUrl          = rep.getHtmlUrl().toString();

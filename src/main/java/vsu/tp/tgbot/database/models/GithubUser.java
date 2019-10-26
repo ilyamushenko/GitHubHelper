@@ -1,6 +1,7 @@
 package vsu.tp.tgbot.database.models;
 
 import org.hibernate.annotations.JoinColumnOrFormula;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +23,7 @@ public class GithubUser {
     private String profileLink;
     @Column(nullable = false)
     private String avatarUrl;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_repository",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -95,6 +96,7 @@ public class GithubUser {
         return this;
     }
 
+    @Transactional
     public Set<Repository> getRepositories() {
         return repositories;
     }

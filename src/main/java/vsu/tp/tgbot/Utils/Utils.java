@@ -10,22 +10,17 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import java.io.IOException;
 
-class MyNullKeySerializer extends JsonSerializer<Object>
-{
-    @Override
-    public void serialize(Object nullKey, JsonGenerator jsonGenerator, SerializerProvider unused)
-            throws IOException
-    {
-        jsonGenerator.writeFieldName("");
+
+public class Utils {
+    public static boolean stringBeginWith(String mainString, String partString) {
+        String mString = mainString.toLowerCase();
+        String pString = partString.toLowerCase();
+        int i = 0;
+        for (i = 0; i < partString.length(); i++) {
+            if (mString.charAt(0) != pString.charAt(0)) {
+                break;
+            }
+        }
+        return i==partString.length();
     }
 }
-
-//public class Utils {
-//    public String getJsonFromObject(Object obj) {
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);
-//        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//        mapper.getSerializerProvider().setNullKeySerializer(new MyNullKeySerializer());
-//        return mapper.writeValueAsString(obj);
-//    }
-//}
