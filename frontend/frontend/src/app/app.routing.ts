@@ -16,10 +16,10 @@ export const routes: Routes = [
   // { path: 'authorization', component: AuthorizationComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'info', component: UserPageComponent },
-  { path: 'subscribe-list', component: SubscribeRepComponent },
+  { path: 'sub-list', component: SubscribeRepComponent },
   { path: 'result-page', component: SearchPageComponent },
-  { path: 'add-repository', component: AddRepositoryComponent}
-  // { path: 'registration', component: RegistrationComponent}
+  { path: 'add-repository', component: AddRepositoryComponent},
+  { path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({

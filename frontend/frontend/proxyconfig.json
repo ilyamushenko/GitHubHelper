@@ -26,54 +26,54 @@
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/search": {
      "target": "https://api.github.com",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/auth": {
-     "target": "https://localhost:8088",
+     "target": "http://localhost:8088",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/registration": {
-     "target": "https://localhost:8088/auth",
+     "target": "http://localhost:8088/auth",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/authenticate": {
-     "target": "https://localhost:8088/auth",
+     "target": "http://localhost:8088/auth",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/repo": {
-     "target": "https://localhost:8088",
+     "target": "http://localhost:8088",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/subscribe": {
-     "target": "https://localhost:8088/repo",
+     "target": "http://localhost:8088/repo",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    },
-   
+
    "/list-repo": {
-     "target": "https://localhost:8088/repo",
+     "target": "http://localhost:8088/repo",
      "secure": false,
      "logLevel": "debug",
      "changeOrigin": true
    }
-   
+
 }

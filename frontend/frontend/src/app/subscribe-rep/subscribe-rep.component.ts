@@ -8,11 +8,11 @@ import {HttpServiceService} from '../http-service/http-service.service';
 })
 export class SubscribeRepComponent implements OnInit {
 	userLogin: string = localStorage.getItem('email');
-    userName: string = localStorage.getItem('name');	
+    userName: string = localStorage.getItem('name');
 	commitCount: number;
 	count: number;
 	commits: Array<any>;
-    showCommits = -1;	
+    showCommits = -1;
     dates: Array<any>;
 	public repositories: Array<any>;
 
@@ -28,14 +28,14 @@ export class SubscribeRepComponent implements OnInit {
 		//this.count = data.result.length;
         this.repositories = data.result;
       },
-      error => {});
+      error => {console.log("моча");});
     /*this.httpService.get('user/myrepositories').subscribe(
       data => {
         console.log(data);
         this.repositories = data;
       });*/
   }
-  
+
   getCommitsDate(commits: Array<any>): void {
     this.dates = Array<any>(this.count);
     var i: number;
@@ -47,7 +47,7 @@ export class SubscribeRepComponent implements OnInit {
       this.commits[i].commit.author.date = data[2].toString() + '.' + data[1].toString() + '.' + data[0].toString() + ' ' + time[0].toString() + ':' + time[1].toString();
     }
   }
-  
+
   getCommits(repository: string): void {
     if (this.showCommits > -1) {
       this.showCommits = -1;
@@ -61,7 +61,7 @@ export class SubscribeRepComponent implements OnInit {
         });
     }
   }
-  
+
   unsubscribe(repId: string): void {
 	  //запрос
 	  this.ngOnInit();
