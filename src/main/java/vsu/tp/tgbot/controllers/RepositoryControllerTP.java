@@ -37,6 +37,6 @@ public class RepositoryControllerTP {
 
     @RequestMapping(value ="list-repo", method = RequestMethod.GET)
     public ApiResponse<Void> listRepo(@RequestBody Login login ) {
-        return new ApiResponse<>(repositoryUser.findByLogin(login.getLogin()).getRepositories());
+        return new ApiResponse<>(repositoryRepo.findByUserID(repositoryUser.findByLogin(login.getLogin()).getUserId()));
     }
 }

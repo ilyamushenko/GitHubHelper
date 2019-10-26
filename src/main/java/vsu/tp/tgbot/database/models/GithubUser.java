@@ -25,25 +25,25 @@ public class GithubUser {
     private String profileLink;
     @Column
     private String avatarUrl;
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_repository",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "repository_id")}
     )
     @Column
-    private Set<Repository> repositories;
+    private Set<Repository> repositories;*/
 
     public GithubUser() {}
 
-    public GithubUser(String login, String token, String name, Long idChatTelegram, String profileLink, String avatarUrl, Set<Repository> repositories) {
+    public GithubUser(String login, String token, String name, Long idChatTelegram, String profileLink, String avatarUrl/*, Set<Repository> repositories*/) {
         this.login = login;
         this.token=token;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.idChatTelegram = idChatTelegram;
         this.profileLink = profileLink;
-        this.repositories = repositories;
+       // this.repositories = repositories;
     }
 
     public Long getUserId() {
@@ -100,7 +100,7 @@ public class GithubUser {
         return this;
     }
 
-    @Transactional
+   /* @Transactional
     public Set<Repository> getRepositories() {
         return repositories;
     }
@@ -108,7 +108,7 @@ public class GithubUser {
     public GithubUser setRepositories(Set<Repository> repositories) {
         this.repositories = repositories;
         return this;
-    }
+    }*/
 
     public String getToken() {
         return token;

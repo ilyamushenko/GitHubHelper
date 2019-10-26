@@ -7,6 +7,8 @@ import vsu.tp.tgbot.database.dao.RepositoryDAO;
 import vsu.tp.tgbot.database.models.Repository;
 import vsu.tp.tgbot.database.service.RepositoryService;
 
+import java.util.List;
+
 @Service
 public class RepositoryServiceImplementation implements RepositoryService {
 
@@ -26,4 +28,11 @@ public class RepositoryServiceImplementation implements RepositoryService {
     public Repository findByFullname(String fullName) {
         return repositoryDAO.findByFullName(fullName);
     }
+
+    @Override
+    public List<Repository> findByUserID(Long userId) {
+        return repositoryDAO.findByUserID(userId);
+    }
+
+
 }

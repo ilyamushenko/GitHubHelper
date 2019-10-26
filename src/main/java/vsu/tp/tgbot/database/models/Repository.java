@@ -11,6 +11,8 @@ public class Repository {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long repositoryId;
     @Column
+    private Long userId;
+    @Column
     private String fullName;
     @Column
     private String htmlUrl;
@@ -22,20 +24,20 @@ public class Repository {
     private String ownerLogin;
     @Column
     private String ownerHtmlUrl;
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "repositories")
-    private Set<GithubUser> subscribers;
+    /*@ManyToMany(fetch = FetchType.EAGER, mappedBy = "repositories")
+    private Set<GithubUser> subscribers;*/
 
     public Repository() {
     }
 
-    public Repository(String fullName, String htmlUrl, String ownerLogin, String pushedAt, String ownerHtmlUrl, String description, Set<GithubUser> subscribers) {
+    public Repository(Long userId,String fullName, String htmlUrl, String ownerLogin, String pushedAt, String ownerHtmlUrl, String description) {
+        this.userId=userId;
         this.fullName = fullName;
         this.ownerHtmlUrl = ownerHtmlUrl;
         this.ownerLogin = ownerLogin;
         this.htmlUrl = htmlUrl;
         this.pushedAt = pushedAt;
         this.description = description;
-        this.subscribers = subscribers;
     }
 
 
@@ -103,14 +105,14 @@ public class Repository {
         return this;
     }
 
-    public Set<GithubUser> getSubscribers() {
+    /*public Set<GithubUser> getSubscribers() {
         return subscribers;
     }
 
     public Repository setSubscribers(Set<GithubUser> subscribers) {
         this.subscribers = subscribers;
         return this;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -121,8 +123,8 @@ public class Repository {
                 ", pushedAt='" + pushedAt + '\'' +
                 ", description='" + description + '\'' +
                 ", ownerLogin='" + ownerLogin + '\'' +
-                ", ownerHtmlUrl='" + ownerHtmlUrl + '\'' +
-                ", subscribers=" + subscribers +
+                ", ownerHtmlUrl='" + ownerHtmlUrl /*+ '\'' +
+                ", subscribers=" + subscribers */+
                 '}';
     }
 }

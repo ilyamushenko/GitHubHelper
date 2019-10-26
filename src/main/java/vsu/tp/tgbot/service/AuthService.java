@@ -25,7 +25,7 @@ public class AuthService {
     public void register(String login, Long idChat, String token){
         GithubUser user = repository.findByLogin(login);
         if (user == null) {
-            GithubUser newUser= new GithubUser(login, token, null, idChat, null,  null, null);
+            GithubUser newUser= new GithubUser(login, token, null, idChat, null,  null);
             repository.add(newUser);
         } else {
             throw new BaseException("User with the given login already exist", null);

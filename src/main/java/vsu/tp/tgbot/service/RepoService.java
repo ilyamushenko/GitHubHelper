@@ -34,21 +34,10 @@ public class RepoService {
             throw new BaseException("User with the given login does not exist",null);
         }
         else {
-            Repository foundRepository = repositoryRepo.findByFullname(fullName);
-            if (foundRepository == null){
-                Set<GithubUser> repositories = new LinkedHashSet<>();
-                Repository repository = new Repository(fullName, htmlUrl,
-                        ownerLogin, pushedAt, ownerHtmlUrl, description, repositories);
-                user.getRepositories().add(repository);
+                Repository repository = new Repository(repositoryUser.findByLogin(login).getUserId(),
+                        fullName, htmlUrl, ownerLogin, pushedAt, ownerHtmlUrl, description);
+                //user.getRepositories().add(repository);
                 repositoryRepo.add(repository);
-            }
-            else{
-                Repository repository = new Repository(fullName, htmlUrl,
-                        ownerLogin, pushedAt, ownerHtmlUrl, description,
-                        repositoryRepo.findByFullname(fullName).getSubscribers());
-                user.getRepositories().add(repository);
-                repositoryRepo.add(repository);
-            }
         }
     }
 }
