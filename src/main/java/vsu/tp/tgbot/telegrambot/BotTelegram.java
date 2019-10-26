@@ -31,6 +31,8 @@ class BotTelegram extends TelegramLongPollingBot {
         super(options);
     }
 
+    private static CommitListener commitListener = new CommitListener();
+
     @Override
     public void onUpdateReceived(Update update) {
         List<User> newChatMembers = update.getMessage().getNewChatMembers();
@@ -46,55 +48,16 @@ class BotTelegram extends TelegramLongPollingBot {
             //ToDo START COMMAND
             if (messageText.equals("/start")) {
                 sendMessageTelegramBot(message, "Привет, " + message.getFrom().getFirstName() + "! Введите на сайте код: " + message.getChatId());
-            //ToDo REPLIST COMMAND
+                commitListener.addListeners(message, message.getChatId());
+                //ToDo REPLIST COMMAND
             } else if (messageText.equals("Список репозиториев, на которые подписан")) {
 
-                Set<Repository> allSubscribedRepos = TelegramBotUtils.getAllSubscribedRepos(message.getChatId());
+                List<Repository> allSubscribedRepos = TelegramBotUtils.getAllSubscribedRepos(message.getChatId());
                 logger.info("Set: {}", allSubscribedRepos);
-                StringBuilder allSubscribedReposInBeautifulViewForMessage = new StringBuilder();
-                int i = 0;
-                for (Repository repository : allSubscribedRepos) {
-                    allSubscribedReposInBeautifulViewForMessage.append(i).append(". ").append(repository);
-                    i++;
-                }
-                sendMessageTelegramBot(message, allSubscribedReposInBeautifulViewForMessage.toString());
+                String resultTextMessage = TelegramBotUtils.repositoriesToString(allSubscribedRepos);
+                sendMessageTelegramBot(message, resultTextMessage);
                 //TODO INFO COMMAND
-            } else if (Utils.stringBeginWith(messageText, "/info")) {
-                if (messageText.split(" ").length == 2)
-                    sendMessageTelegramBot(message, TelegramBotUtils.getLastCommitInfo(message.getChatId(), messageText.split(" ")[1]));
-                else
-                    sendMessageTelegramBot(message, TelegramBotUtils.getLastCommitInfo(message.getChatId(), "Укажите имя репозитория в команде"));
             }
-//            switch (messageText) {
-//                case "/start":
-//                    sendMessageTelegramBot(message, "Привет, " + message.getFrom().getFirstName() + "! Введите на сайте код: " + message.getChatId());
-//                    break;
-//                case "Список репозиториев, на которые подписан":
-//                    Set<Repository> allSubscribedRepos = TelegramBotUtils.getAllSubscribedRepos(message.getChatId());
-//                    logger.info("Set: {}", allSubscribedRepos);
-//                    StringBuilder allSubscribedReposInBeautifulViewForMessage = new StringBuilder();
-//                    int i = 0;
-//                    for(Repository repository: allSubscribedRepos) {
-//                        allSubscribedReposInBeautifulViewForMessage.append(i).append(". ").append(repository);
-//                        i++;
-//                    }
-//                    sendMessageTelegramBot(message, allSubscribedReposInBeautifulViewForMessage.toString());
-//                    break;
-//                case "/info":
-//                    if(messageText.split(" ").length > 1) {
-//                        sendMessageTelegramBot(message, TelegramBotUtils.getLastCommitInfo(message.getChatId(), messageText.split(" ")[1]));
-//                    } else {
-//                        sendMessageTelegramBot(message, TelegramBotUtils.getLastCommitInfo(message.getChatId(), "Укажите имя репозитория в команде"));
-//                    }
-//                    break;
-//                default:
-//                    sendMessageTelegramBot(message, "Не понимаю :(");
-//                    break;
-////                default:
-////                    System.out.println("default");
-////                    sendMessageTelegramBot(message, "Введите команду");
-////                    break;
-//            }
         }
     }
 
@@ -126,22 +89,6 @@ class BotTelegram extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-
-//    private void sendMessageTelegramBot(Message message, String text) {
-//        Long chatId = message.getChatId();
-//        SendMessage sendMessage = new SendMessage();
-//        sendMessage.enableMarkdown(true);
-//        sendMessage.setChatId(message.getChatId().toString());
-//        sendMessage.setText(text);
-//        //sendMessageTelegramBot.setReplyToMessageId(message.getMessageId()); // для ответа на сообщение
-//        //sendMessageTelegramBot.setText(text); //отправка сообщения
-//        System.out.println(text);
-//        try {
-//            execute(sendMessage);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @Override
     public String getBotUsername() {

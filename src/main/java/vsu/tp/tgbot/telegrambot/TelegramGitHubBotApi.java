@@ -9,6 +9,7 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.ApiContext;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 import vsu.tp.tgbot.database.service.GithubUserService;
 import vsu.tp.tgbot.database.service.implementations.GithubUserServiceImplementation;
@@ -17,12 +18,12 @@ import java.util.logging.LogManager;
 public class TelegramGitHubBotApi {
 
     //FIXME: if proxy doesn't work - https://hidemy.name/ru/proxy-list/?type=5#list
-    private final static String PROXY_HOST = "212.47.240.194"; /* proxy host */
-    private final static Integer PROXY_PORT = 1080; /* proxy port */
+    private final static String PROXY_HOST = "80.211.87.172"; /* proxy host */
+    private final static Integer PROXY_PORT = 1089; /* proxy port */
 
     private Logger logger = LoggerFactory.getLogger(TelegramGitHubBotApi.class);
 
-    private BotTelegram myBot;
+    private static BotTelegram myBot;
 
     public void start() {
         try {
@@ -42,6 +43,10 @@ public class TelegramGitHubBotApi {
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void sendMessage(Message message, String text) {
+        myBot.sendMessageTelegramBot(message, text);
     }
 
 }

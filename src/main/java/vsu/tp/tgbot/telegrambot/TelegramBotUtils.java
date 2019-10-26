@@ -4,6 +4,7 @@ import org.kohsuke.github.GHCommit;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import vsu.tp.tgbot.database.models.GithubUser;
@@ -12,11 +13,14 @@ import vsu.tp.tgbot.database.service.GithubUserService;
 import vsu.tp.tgbot.database.service.RepositoryService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,64 +30,92 @@ public class TelegramBotUtils {
 
     static GithubUserService githubUserService;
     static RepositoryService repositoryService;
+    static GitHub gitHub;
+    static boolean firstTime = true;
 
     public TelegramBotUtils(GithubUserService githubUserService, RepositoryService repositoryService) {
         this.githubUserService = githubUserService;
         this.repositoryService = repositoryService;
     }
 
-    public static Set<Repository> getAllSubscribedRepos(Long userChatId) {
-        GithubUser userByIdChatTelegram = githubUserService.findByIdChatTelegram(userChatId);
-        return userByIdChatTelegram.getRepositories();
+    public static List<Repository> getAllSubscribedRepos(Long chatId) {
+        GithubUser userByIdChatTelegram = githubUserService.findByIdChatTelegram(chatId);
+        return repositoryService.findByUserID(userByIdChatTelegram.getUserId());
     }
 
     private static GHRepository getGHRepositoryByName(Collection<GHRepository> repositories, String name) {
         return repositories.stream().filter(rep -> name.toLowerCase().equals(rep.getName().toLowerCase())).findFirst().orElse(null);
     }
 
-    public static String getLastCommitInfo(Long chatId, String name) {
+    public static Map<GHRepository, GHCommit> getLastCommitInfo(Long chatId) {
+        if (firstTime) {
+            try {
+                gitHub = GitHub.connectUsingPassword("ilmamen36@yandex.ru", "nosok1488");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            firstTime = false;
+        }
         GithubUser userByIdChatTelegram = githubUserService.findByIdChatTelegram(chatId);
         String result = "";
         String token = "token";
-        try {
-            GitHub gitHub = GitHub.connectUsingOAuth(token);
-            Collection<GHRepository> repositoriesFromGitHubApi = gitHub.getMyself().getAllRepositories().values();
-            GHRepository needRepository = getGHRepositoryByName(repositoriesFromGitHubApi, name);
-            if (needRepository != null) {
-                List<GHCommit> ghCommits = needRepository.listCommits().asList();
-                GHCommit lastCommit = findLastCommit(ghCommits);
+        GHCommit lastCommit = null;
+        Map<GHRepository, GHCommit> repAndCommit = new HashMap<>();
+        //ToDO get all subscribed reps;
+        List<Repository> repositories = getAllSubscribedRepos(userByIdChatTelegram.getIdChatTelegram());
 
-                result += "Автор коммита: " + lastCommit.getAuthor().getLogin() + ";\n" +
-                        "Сообщение: " + lastCommit.getCommitShortInfo().getMessage() + ";\n" +
-                        "SHA1: " + lastCommit.getSHA1() + ";\n" +
-                        "Строк добавлено: " + lastCommit.getLinesAdded() + ";\n" +
-                        "Строк изменено: " + lastCommit.getLinesChanged() + ";\n" +
-                        "Строк удалено: " + lastCommit.getLinesDeleted() + ";\n" +
-                        "Дата: " + lastCommit.getCommitDate() + "\n;";
+        try {
+            List<GHRepository> needRepositories = new ArrayList<>();
+            for (Repository rep : repositories) {
+                needRepositories.add(gitHub.getRepository(rep.getFullName()));
+            }
+            if (!needRepositories.isEmpty()) {
+
+                for (GHRepository repository : needRepositories) {
+                    List<GHCommit> ghCommits = repository.listCommits().asList();
+                    lastCommit = findLastCommit(ghCommits);
+                    repAndCommit.put(repository, lastCommit);
+                }
+
             } else {
-                result = "Нет репозитория с таким именем :(";
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        return repAndCommit;
+    }
+
+    private static GHCommit findLastCommit(List<GHCommit> commits) {
+        return commits.get(0);
+    }
+
+    public static String commitToString(GHCommit commit) {
+        String result = "Ошибка";
+        try {
+            result = "Автор коммита: " + commit.getAuthor().getLogin() + ";\n" +
+                    "Сообщение: " + commit.getCommitShortInfo().getMessage() + ";\n" +
+                    "SHA1: " + commit.getSHA1() + ";\n" +
+                    "Строк добавлено: " + commit.getLinesAdded() + ";\n" +
+                    "Строк изменено: " + commit.getLinesChanged() + ";\n" +
+                    "Строк удалено: " + commit.getLinesDeleted() + ";\n" +
+                    "Дата: " + commit.getCommitDate() + ";\n";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return result;
     }
 
-    private static GHCommit findLastCommit(Collection<GHCommit> commits) {
-        Date maxDate = new Date(1);
-        GHCommit result = null;
-        for(GHCommit commit: commits) {
-            try {
-                Date commitDate = commit.getCommitDate();
-                if(commitDate.compareTo(maxDate) > 0) {
-                    maxDate = commitDate;
-                    result  = commit;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+    public static String repositoriesToString(List<Repository> repositories) {
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < repositories.size(); i++) {
+            String pref = String.valueOf(i + 1) + ". ";
+            result.append(pref).append(repositories.get(i).getFullName()).append(";\n");
+            for(int j = 0; j <= pref.length(); j++) {
+                result.append(" ");
             }
+            result.append("Ссылка: ").append(repositories.get(i).getHtmlUrl()).append(";\n");
         }
-        return result;
+        return result.toString();
     }
 }
