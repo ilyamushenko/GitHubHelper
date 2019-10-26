@@ -1,6 +1,5 @@
 package vsu.tp.tgbot.database.service.implementations;
 
-import org.kohsuke.github.GHUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +30,11 @@ public class GithubUserServiceImplementation implements GithubUserService {
     @Override
     public GithubUser findByIdChatTelegram(Long idChat) {
         return githubUserDAO.findByIdChatTelegram(idChat);
+    }
+
+    @Override
+    public GithubUser findByLogin(String login) {
+        return githubUserDAO.findByLogin(login);
     }
 
     @Override

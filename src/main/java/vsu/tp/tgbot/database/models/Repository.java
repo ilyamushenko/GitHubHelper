@@ -10,17 +10,17 @@ public class Repository {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long repositoryId;
-    @Column(nullable = false)
+    @Column
     private String fullName;
-    @Column(nullable = false)
+    @Column
     private String htmlUrl;
-    @Column(nullable = false)
+    @Column
     private String pushedAt;
-    @Column(nullable = false)
+    @Column
     private String description;
-    @Column(nullable = false)
+    @Column
     private String ownerLogin;
-    @Column(nullable = false)
+    @Column
     private String ownerHtmlUrl;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "repositories")
     private Set<GithubUser> subscribers;
@@ -37,6 +37,8 @@ public class Repository {
         this.description = description;
         this.subscribers = subscribers;
     }
+
+
 
     public Long getRepositoryId() {
         return repositoryId;

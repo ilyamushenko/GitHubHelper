@@ -1,10 +1,9 @@
 package vsu.tp.tgbot.controllers;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import org.kohsuke.github.*;
+import org.kohsuke.github.GHRepository;
+import org.kohsuke.github.GHRepositorySearchBuilder;
+import org.kohsuke.github.GitHub;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import vsu.tp.tgbot.database.service.GithubUserService;
 import vsu.tp.tgbot.database.service.RepositoryService;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,15 +27,17 @@ public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private final GithubUserService githubUserService;
-    private final RepositoryService repositoryService;
-
     @Autowired
-    public UserController(GithubUserService githubUserService, RepositoryService repositoryService) {
-        this.githubUserService = githubUserService;
-        this.repositoryService = repositoryService;
-    }
-
+    private  GithubUserService githubUserService;
+    @Autowired
+    private  RepositoryService repositoryService;
+    /*
+        @Autowired
+        public UserController(GithubUserService githubUserService, RepositoryService repositoryService) {
+            this.githubUserService = githubUserService;
+            this.repositoryService = repositoryService;
+        }
+    */
     @GetMapping("/test")
     public Object tryToLoginGithub() {
         String login = "ilmamen36@yandex.ru";
