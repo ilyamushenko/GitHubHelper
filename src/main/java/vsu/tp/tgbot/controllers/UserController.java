@@ -24,20 +24,20 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+/*
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private  GithubUserService githubUserService;
     @Autowired
     private  RepositoryService repositoryService;
-    /*
+
         @Autowired
         public UserController(GithubUserService githubUserService, RepositoryService repositoryService) {
             this.githubUserService = githubUserService;
             this.repositoryService = repositoryService;
         }
-    */
+
     @GetMapping("/test")
     public Object tryToLoginGithub() {
         String login = "ilmamen36@yandex.ru";
@@ -158,5 +158,5 @@ public class UserController {
         return null;
     }
 
-
+*/
 }

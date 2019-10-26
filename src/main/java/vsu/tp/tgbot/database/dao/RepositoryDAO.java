@@ -6,4 +6,5 @@ import vsu.tp.tgbot.database.models.Repository;
 
 public interface RepositoryDAO extends JpaRepository<Repository, Integer> {
     Repository findByFullName(String fullName);
+
 }

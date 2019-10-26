@@ -8,5 +8,5 @@ public interface GithubUserDAO extends JpaRepository<GithubUser, Integer> {
     GithubUser getByUserId(Long userId);
     GithubUser getByIdChatTelegram(Long chatId);
     GithubUser findByIdChatTelegram(Long chatId);
-
+    GithubUser findByLogin(String login);
 }
