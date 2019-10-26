@@ -7,6 +7,7 @@ import vsu.tp.tgbot.database.service.implementations.RepositoryServiceImplementa
 import vsu.tp.tgbot.response.ApiResponse;
 import vsu.tp.tgbot.response.Login;
 import vsu.tp.tgbot.response.SubscribeRepo;
+import vsu.tp.tgbot.response.UnsubscribeRepo;
 import vsu.tp.tgbot.service.RepoService;
 
 @CrossOrigin(origins = "*")
@@ -35,8 +36,18 @@ public class RepositoryControllerTP {
         return new ApiResponse<>("Success");
     }
 
-    @RequestMapping(value ="list-repo", method = RequestMethod.GET)
+    @RequestMapping(value ="list-repo", method = RequestMethod.POST)
     public ApiResponse<Void> listRepo(@RequestBody Login login ) {
         return new ApiResponse<>(repositoryRepo.findByUserID(repositoryUser.findByLogin(login.getLogin()).getUserId()));
+    }
+
+    /**
+     * controller which delete user
+     *
+     */
+    @RequestMapping(value = "unsubscribe", method = RequestMethod.POST)
+    public ApiResponse<Void> delete(@RequestBody UnsubscribeRepo unsubscribeRepo) {
+        repositoryRepo.deleteByUserIdAndFullName(repositoryUser.findByLogin(unsubscribeRepo.getLogin()).getUserId(), unsubscribeRepo.getFullname());
+        return new ApiResponse<>(null);
     }
 }

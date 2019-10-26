@@ -9,4 +9,6 @@ public interface RepositoryService {
     void add(Repository repo);
     Repository findByFullname(String fullName);
     List<Repository> findByUserID(Long userId);
+    void deleteByUserID(Long userId, String login);
+    void deleteByUserIdAndFullName(Long userId, String fullName);
 }

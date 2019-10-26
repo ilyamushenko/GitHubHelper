@@ -3,12 +3,14 @@ package vsu.tp.tgbot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import vsu.tp.tgbot.database.models.GithubUser;
 import vsu.tp.tgbot.database.models.Repository;
 import vsu.tp.tgbot.database.service.implementations.GithubUserServiceImplementation;
 import vsu.tp.tgbot.database.service.implementations.RepositoryServiceImplementation;
 import vsu.tp.tgbot.exception.BaseException;
 
+import javax.transaction.Transactional;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -40,4 +42,9 @@ public class RepoService {
                 repositoryRepo.add(repository);
         }
     }
+/*
+    @Transactional
+    public void delete(Long userId, String fullNAme){
+        repositoryRepo.deleteByUserIdAndFullName(userId, fullNAme);
+    }*/
 }

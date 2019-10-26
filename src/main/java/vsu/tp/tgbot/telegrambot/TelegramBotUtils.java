@@ -32,10 +32,10 @@ public class TelegramBotUtils {
         this.repositoryService = repositoryService;
     }
 
-    public static Set<Repository> getAllSubscribedRepos(Long userChatId) {
+    /*public static Set<Repository> getAllSubscribedRepos(Long userChatId) {
         GithubUser userByIdChatTelegram = githubUserService.findByIdChatTelegram(userChatId);
         return userByIdChatTelegram.getRepositories();
-    }
+    }*/
 
     private static GHRepository getGHRepositoryByName(Collection<GHRepository> repositories, String name) {
         return repositories.stream().filter(rep -> name.toLowerCase().equals(rep.getName().toLowerCase())).findFirst().orElse(null);
