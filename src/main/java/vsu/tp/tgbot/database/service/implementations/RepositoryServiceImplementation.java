@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import vsu.tp.tgbot.database.dao.RepositoryDAO;
 import vsu.tp.tgbot.database.models.Repository;
 import vsu.tp.tgbot.database.service.RepositoryService;
+import vsu.tp.tgbot.exception.BaseException;
 
 import java.util.List;
 
@@ -34,5 +35,14 @@ public class RepositoryServiceImplementation implements RepositoryService {
         return repositoryDAO.findByUserID(userId);
     }
 
+    @Override
+    public void deleteByUserID(Long userId , String login) {
+        repositoryDAO.deleteByUserID(userId, login);
+    }
+
+    @Override
+    public void deleteByUserIdAndFullName(Long userId , String fullName) {
+        repositoryDAO.deleteByUserIdAndFullName(userId,fullName);
+    }
 
 }
