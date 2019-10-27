@@ -57,10 +57,8 @@ export class MainPageComponent implements OnInit {
                 }).subscribe(
                   data => {
                     console.log('data ' + data);
-                    if (data === 'success') {
-                      localStorage.setItem('isAuth', 'true');
+                    localStorage.setItem('isAuth', 'true');
                       this.router.navigateByUrl('info');
-                    } 
                   },
                   error => {
                     console.log('error ' + error);

@@ -29,12 +29,7 @@ export class SubscribeRepComponent implements OnInit {
 		//this.count = data.result.length;
         this.repositories = data.result;
       },
-      error => {console.log("моча");});
-    /*this.httpService.get('user/myrepositories').subscribe(
-      data => {
-        console.log(data);
-        this.repositories = data;
-      });*/
+      error => {});
   }
 
   getCommitsDate(commits: Array<any>): void {
