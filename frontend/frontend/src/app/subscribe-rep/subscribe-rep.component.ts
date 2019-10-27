@@ -13,6 +13,7 @@ export class SubscribeRepComponent implements OnInit {
 	count: number;
 	commits: Array<any>;
     showCommits = -1;
+	fullName: string;
     dates: Array<any>;
 	public repositories: Array<any>;
 
@@ -53,6 +54,7 @@ export class SubscribeRepComponent implements OnInit {
       this.showCommits = -1;
     } else {
       this.showCommits = 1;
+	  this.fullName = repository;
       this.httpService.get('/repos/' + repository + '/commits').subscribe(
         data => {
           this.commitCount = data.length;

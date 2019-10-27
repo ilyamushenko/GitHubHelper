@@ -15,7 +15,8 @@ export class ToolbarComponent implements OnInit {
 
   isAuth(): boolean {
     this.account = localStorage.getItem('email');
-    if (this.account === 'Войти' && localStorage.getItem('isAuth') === 'false') {
+	console.log(localStorage.getItem('isAuth'));
+    if (this.account === 'Войти' || localStorage.getItem('isAuth') === 'false') {
       return true;
     } else {
       return false;

@@ -46,10 +46,10 @@
                   <div>Создатель: <a href ="{{rep.ownerHtmlUrl}}">{{rep.ownerLogin}}</a></div><br>
                   <div>Дата последнего изменения: {{rep.pushedAt}}</div><br>
                   <div *ngIf="rep.description != null">Описание: {{rep.description}}</div><br>
-                  <div *ngIf="showCommits == -1 || showCommits != rep.id" (click)="getCommits(rep.fullName)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
-                  <div *ngIf="showCommits > -1 && showCommits == rep.id" (click)="getCommits(rep.fullName)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
+                  <div *ngIf="showCommits == -1 || fullName != rep.fullName" (click)="getCommits(rep.fullName)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Показать список коммитов</p></div>
+                  <div *ngIf="showCommits > -1 && fullName == rep.fullName" (click)="getCommits(rep.fullName)"><p class="btn btn-neutral" style="color: #f96332; padding: 0; margin: 0; width: 100%; text-align: left; font-size: medium;">Скрыть список коммитов</p></div>
 
-                  <div *ngIf="showCommits > -1 && showCommits == rep.id">
+                  <div *ngIf="showCommits > -1 && fullName == rep.fullName">
                     <table class="table">
                       <tr *ngFor="let commit of commits">
                         <td>

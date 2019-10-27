@@ -49,19 +49,18 @@ export class MainPageComponent implements OnInit {
             this.httpService.get('user').subscribe(
               data => {
                 localStorage.setItem('email', data.login);
-                console.log(data.login);
+				localStorage.setItem('name', data.name);
+                console.log(data.login + ' ' + data.name);
                 this.httpService.post('/auth/authenticate', {
                   login: localStorage.getItem('email'),
                   token: localStorage.getItem('token')
                 }).subscribe(
                   data => {
-                    console.log(data);
+                    console.log('data ' + data);
                     if (data === 'success') {
                       localStorage.setItem('isAuth', 'true');
                       this.router.navigateByUrl('info');
-                    } else {
-                      // this.router.navigateByUrl('registration');
-                    }
+                    } 
                   },
                   error => {
                     console.log('error ' + error);

@@ -28,6 +28,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() { // todo Think about DONe
+  localStorage.setItem('isAuth', 'false');
     // console.log(localStorage.getItem('email'));
     // console.log(this.login);
     // if (localStorage.getItem('email') === 'Войти') {
