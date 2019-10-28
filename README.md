@@ -6,7 +6,7 @@ Cсылки:
 - Текущая презентация: https://prezi.com/view/ah1uptHb1RkFcsIXEKyI/
 - trello: https://trello.com/b/AKIZ31Nr/work-with-documentation-and-services
 - RealtimeBoard: https://miro.com/app/board/o9J_kxmm3-M=/
-- Демонстрация (видео): https://yadi.sk/i/ruzUCjmZOKlBbQ
+- Демонстрация (видео): https://yadi.sk/i/kR5UAKRgwe031w
 
 В нашем репозитории несколько веток:
 - frontend: ветка, содержащая проект на angular со страницами нашего приложения
