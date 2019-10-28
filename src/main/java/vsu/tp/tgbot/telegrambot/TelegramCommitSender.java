@@ -2,7 +2,11 @@ package vsu.tp.tgbot.telegrambot;
 
 import org.kohsuke.github.GHCommit;
 import org.kohsuke.github.GHRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import vsu.tp.tgbot.database.service.GithubUserService;
+import vsu.tp.tgbot.database.service.RepositoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +18,11 @@ public class TelegramCommitSender extends Thread {
     Long chatId;
     Message message;
     Map<GHRepository, GHCommit> previousInfoAboutCommits;
+
+    @Autowired
+    private RepositoryService repositoryService;
+    @Autowired
+    private GithubUserService githubUserService;
 
     public TelegramCommitSender(Long chatId, Message message) {
         this.chatId = chatId;
@@ -37,13 +46,14 @@ public class TelegramCommitSender extends Thread {
         for (GHRepository repository : ghRepositories) {
             GHCommit lastCommitOnPreviousStep = previousInfoAboutCommits.get(repository);
             GHCommit lastCommitNow = lastCommitInfo.get(repository);
-            if (!lastCommitOnPreviousStep.getSHA1().equals(lastCommitNow.getSHA1())) {
+            if (lastCommitOnPreviousStep != null && lastCommitNow != null && !lastCommitOnPreviousStep.getSHA1().equals(lastCommitNow.getSHA1())) {
                 needToSendInfo.add(lastCommitNow);
             }
         }
         previousInfoAboutCommits = lastCommitInfo;
         return needToSendInfo;
     }
+
 
     private void doSmth() {
         List<GHCommit> update = update();
