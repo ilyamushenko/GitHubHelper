@@ -18,8 +18,8 @@ import java.util.logging.LogManager;
 public class TelegramGitHubBotApi {
 
     //FIXME: if proxy doesn't work - https://hidemy.name/ru/proxy-list/?type=5#list
-    private final static String PROXY_HOST = "80.211.87.172"; /* proxy host */
-    private final static Integer PROXY_PORT = 1089; /* proxy port */
+    private final static String PROXY_HOST = "45.55.230.207"; /* proxy host */
+    private final static Integer PROXY_PORT = 27442; /* proxy port */
 
     private Logger logger = LoggerFactory.getLogger(TelegramGitHubBotApi.class);
 

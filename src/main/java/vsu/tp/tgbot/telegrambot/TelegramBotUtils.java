@@ -62,8 +62,12 @@ public class TelegramBotUtils {
         GHCommit lastCommit = null;
         Map<GHRepository, GHCommit> repAndCommit = new HashMap<>();
         //ToDO get all subscribed reps;
-        List<Repository> repositories = getAllSubscribedRepos(userByIdChatTelegram.getIdChatTelegram());
-
+        List<Repository> repositories;
+        if(userByIdChatTelegram != null) {
+            repositories = getAllSubscribedRepos(userByIdChatTelegram.getIdChatTelegram());
+        } else {
+            repositories = new ArrayList<>();
+        }
         try {
             List<GHRepository> needRepositories = new ArrayList<>();
             for (Repository rep : repositories) {

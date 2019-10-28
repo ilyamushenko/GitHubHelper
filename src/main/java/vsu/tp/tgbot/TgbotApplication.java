@@ -6,13 +6,13 @@ import org.springframework.context.annotation.ComponentScan;
 import vsu.tp.tgbot.telegrambot.TelegramGitHubBotApi;
 
 @SpringBootApplication
-@ComponentScan
 public class TgbotApplication {
 
     public static void main(String[] args) {
-        //TelegramGitHubBotApi tgApi = new TelegramGitHubBotApi();
-       // tgApi.start();
+        TelegramGitHubBotApi tgApi = new TelegramGitHubBotApi();
+        tgApi.start();
         SpringApplication.run(TgbotApplication.class, args);
+        //добавить многопоточный метод, который будет проверять обновление репозиториев по последнему коммиту
     }
 
 }
