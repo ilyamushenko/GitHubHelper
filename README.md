@@ -14,11 +14,14 @@
 
 ## Back-end
 
-Серверная часть состоит из telegram-бота (@GitHubHelperTgBot) и контроллеров для работы с БД и находится в ветке [backend](https://github.com/ilyamushenko/GitHubHelper/tree/backend)
+Серверная часть состоит из telegram-бота (@GitHubHelperTgBot) и Rest-контроллеров для работы с БД и находится в ветке [backend](https://github.com/ilyamushenko/GitHubHelper/tree/backend)
 
 ## Навигация по документации
 
-- [Документация](https://drive.google.com/open?id=1VwlMEH0CYklWTR202jQ-d98_uC5rnsJi)
+- [Курсовой проект](https://github.com/ilyamushenko/GitHubHelper/blob/documentation/documentation/%D0%9A%D1%83%D1%80%D1%81%D0%BE%D0%B2%D0%BE%D0%B9_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82.docx)
+- [Техническое задание](https://github.com/ilyamushenko/GitHubHelper/blob/documentation/documentation/%D0%A2%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5.docx)
+- [Документация в PDF-формате](https://github.com/ilyamushenko/GitHubHelper/tree/documentation/documentation/pdf)
+- [Диаграммы](https://github.com/ilyamushenko/GitHubHelper/tree/documentation/documentation/diagrams)
 - [Презентация](https://prezi.com/view/ah1uptHb1RkFcsIXEKyI/)
 - [Демо-видео](https://yadi.sk/i/kR5UAKRgwe031w)
 
