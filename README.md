@@ -14,7 +14,7 @@
 
 ## Back-end
 
-Приложение находится в ветке [backend](https://github.com/ilyamushenko/GitHubHelper/tree/backend)
+Серверная часть состоит из telegram-бота (@GitHubHelperTgBot) и контроллеров для работы с БД и находится в ветке [backend](https://github.com/ilyamushenko/GitHubHelper/tree/backend)
 
 ## Навигация по документации
 
