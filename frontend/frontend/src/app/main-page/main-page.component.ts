@@ -6,7 +6,7 @@ import {HttpServiceService} from '../http-service/http-service.service';
 export const development = {
   client_id: 'd55965076aadb13c28e2',
   client_secret: '86f103cd0cb022839ff96e5feaf73b48fd142881',
-  redirect_uri: 'http://localhost:4200/'
+    redirect_uri: 'http://1a3551a5.ngrok.io'
 };
 
 @Component({
