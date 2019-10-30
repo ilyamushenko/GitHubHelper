@@ -14,7 +14,7 @@
 
 ## Back-end
 
-Серверная часть состоит из telegram-бота (@GitHubHelperTgBot) и Rest-контроллеров для работы с БД и находится в ветке [backend](https://github.com/ilyamushenko/GitHubHelper/tree/backend)
+Серверная часть состоит из telegram-бота (@GitHubHelperTgBot) и Rest-контроллеров для работы с БД, и находится в ветке [backend](https://github.com/ilyamushenko/GitHubHelper/tree/backend)
 
 ## Навигация по документации
 
